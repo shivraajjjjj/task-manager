@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+@layer base {
+  * {
+    @apply transition-colors duration-200;
+  }
+  
+  body {
+    @apply antialiased;
+  }
+}
+
+@layer utilities {
+  .task-card {
+    @apply transition-all duration-300 hover:shadow-md;
+  }
+  
+  .btn {
+    @apply transition-all duration-200 hover:scale-105 active:scale-95;
+  }
+}
