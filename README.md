@@ -10,15 +10,22 @@ A simple full-stack task manager where users can create, view, update, and delet
 ## Features
 - Add tasks with title and description
 - View all tasks
-- Update task status
-- Delete tasks
+- Update task status (pending / completed)  
+- Delete tasks  
+- Filter tasks by status (All / Pending / Completed)  
 - Persistent storage with MongoDB
 
+
 ## Project Flow
-1. **User Interface**: The frontend is built using React and Vite, providing a responsive and interactive user experience.
-2. **API Communication**: The frontend communicates with the backend through RESTful API calls.
-3. **Data Management**: The backend handles data operations, including CRUD functionalities, using a mongoDB database.
-4. **Routing**: The application uses routing to navigate between different views and components.
+1. **Frontend (React + Vite)**  
+   Provides a responsive UI and handles user interactions.
+
+2. **API Communication**  
+   Frontend communicates with backend using RESTful APIs.
+
+3. **Backend (Express + MongoDB)**  
+   Handles CRUD operations and data persistence.
+   
 
 ## Project Structure
 
@@ -32,6 +39,7 @@ Backend/
 └── routes/           # API routes
     └── taskRoutes.js # Task-related routes
 ```
+
 
 ### Frontend
 ```
@@ -49,35 +57,53 @@ Frontend/
     
 ```
 
-## Setup
-1. **Clone the repository**:
+## Setup Instructions
+ **Clone the repository**:
    ```bash
    git clone https://github.com/shivraajjjjj/task-manager.git
    cd task-manager
    ```
-2. **Install Backend Dependencies**:
-   ```bash
-   cd Backend
-   npm install
-   ```
-3. **Configure Environment Variables (Backend)**:
-   Create a `.env` file inside the `Backend` folder:
-   ```env
-   MONGO_URL=your_mongodb_connection_string
-   PORT=5000
-   ```
-4. **Install Frontend Dependencies**:
-   ```bash
-   cd ../Frontend
-   npm install
-   ```
-5. **Run the Backend Server**:
-   ```bash
-   cd ../Backend
-   node server.js
-   ```
-6. **Run the Frontend Application**:
-   ```bash
-   cd ../Frontend
-   npm run dev
-   ```
+### 1. Prerequisites
+- Node.js and npm installed
+- MongoDB connection string available
+
+### 2. Backend Setup
+```bash
+cd Backend
+npm install
+```
+
+Create `Backend/.env`:
+```env
+MONGO_URL=your_mongodb_connection_string
+PORT=3000
+```
+
+Start backend:
+```bash
+node server.js
+```
+
+Backend currently:
+- Reads `MONGO_URL` and `PORT` from `Backend/.env`
+- Exposes task API at `http://localhost:3000/task`
+
+### 3. Frontend Setup
+```bash
+cd ../Frontend
+npm install
+```
+
+Create or update `Frontend/.env`:
+```env
+VITE_API_URL=http://localhost:3000/task
+```
+
+Start frontend:
+```bash
+npm run dev
+```
+
+Frontend currently:
+- Uses `VITE_API_URL` as the axios `baseURL`
+- Calls `/`, `/:id` endpoints relative to `VITE_API_URL`

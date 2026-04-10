@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
     res.send('Hello World!');
 });
 
-app.use('/api', TaskRoutes);
+app.use('/task', TaskRoutes);
 
 app.listen(process.env.PORT, () => {
     console.log(`Server is running on port ${process.env.PORT}`);
